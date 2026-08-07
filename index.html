@@ -286,7 +286,7 @@ body {
 
 <!-- التوقيع -->
 <div class="signature">
-    Made with love ❤️ by Rehab
+    Made with ❤️ by Rehab
 </div>
 
 <script>
@@ -306,6 +306,10 @@ function createStars() {
     }
 }
 
+// وضع الاختبار السري
+const urlParams = new URLSearchParams(window.location.search);
+const isTest = urlParams.get('test') === '1';
+
 // تاريخ الهدف - 15 أغسطس 2026 الساعة 12:00 صباحاً بتوقيت الرياض
 const targetDate = new Date('2026-08-15T00:00:00+03:00').getTime();
 
@@ -314,7 +318,7 @@ function updateCountdown() {
     const now = new Date().getTime();
     const distance = targetDate - now;
     
-    if (distance <= 0) {
+    if (distance <= 0 || isTest) {
         // انتهى العد التنازلي
         endCountdown();
         return;
