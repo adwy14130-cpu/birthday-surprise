@@ -3,135 +3,433 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>هدية عيد ميلاد ❤️</title>
-
+<title>إلى هيما ❤️</title>
 <style>
-body{
-margin:0;
-font-family:Tahoma;
-background:linear-gradient(135deg,#ffdde1,#ee9ca7);
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-text-align:center;
-overflow:hidden;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.box{
-background:white;
-padding:40px;
-border-radius:25px;
-box-shadow:0 15px 40px rgba(0,0,0,.2);
-width:90%;
-max-width:700px;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    background: linear-gradient(to bottom, #0a0e27 0%, #1a1a3e 50%, #0f0c29 100%);
+    min-height: 100vh;
+    color: white;
 }
 
-h1{
-color:#e91e63;
-font-size:42px;
+/* السماء والنجوم */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
 }
 
-p{
-font-size:22px;
-color:#555;
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
 }
 
-#countdown{
-font-size:40px;
-font-weight:bold;
-color:#ff4081;
-margin:30px;
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
 }
 
-iframe{
-width:100%;
-height:400px;
-border:none;
-border-radius:20px;
+/* القمر */
+.moon {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at 30% 30%, #fff9e6, #ffd700);
+    border-radius: 50%;
+    box-shadow: 0 0 60px rgba(255, 215, 0, 0.5), 0 0 100px rgba(255, 215, 0, 0.3);
+    z-index: 1;
+    animation: moonGlow 4s ease-in-out infinite;
 }
 
-button{
-padding:15px 35px;
-font-size:22px;
-border:none;
-border-radius:12px;
-background:#e91e63;
-color:white;
-cursor:pointer;
-margin-top:20px;
+@keyframes moonGlow {
+    0%, 100% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.5), 0 0 100px rgba(255, 215, 0, 0.3); }
+    50% { box-shadow: 0 0 80px rgba(255, 215, 0, 0.7), 0 0 120px rgba(255, 215, 0, 0.5); }
 }
 
-button:hover{
-background:#c2185b;
+/* المحتوى الرئيسي */
+.container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    text-align: center;
+}
+
+/* شاشة العد التنازلي */
+.countdown-screen {
+    animation: fadeIn 2s ease-in;
+}
+
+.countdown-screen h1 {
+    font-size: clamp(32px, 6vw, 48px);
+    margin-bottom: 20px;
+    color: #ffd700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.countdown-screen p {
+    font-size: clamp(16px, 3vw, 20px);
+    margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    line-height: 1.8;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* العداد */
+.countdown {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.countdown-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 15px;
+    padding: 25px 30px;
+    min-width: 120px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.countdown-item .number {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: bold;
+    color: #ffd700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    display: block;
+}
+
+.countdown-item .label {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 5px;
+}
+
+/* شاشة الرسالة بعد العد */
+.message-screen {
+    display: none;
+    animation: fadeIn 2s ease-in;
+    text-align: center;
+    max-width: 700px;
+}
+
+.message-screen h1 {
+    font-size: clamp(28px, 5vw, 42px);
+    color: #ffd700;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.message-screen p {
+    font-size: clamp(18px, 3vw, 24px);
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+/* شاشة الفيديو */
+.video-screen {
+    display: none;
+    animation: fadeIn 1s ease-in;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.video-screen video {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+}
+
+.video-button {
+    display: none;
+    margin: 30px auto;
+    padding: 15px 40px;
+    font-size: 20px;
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #0a0e27;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.video-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6);
+}
+
+/* التوقيع */
+.signature {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: rgba(255, 215, 0, 0.6);
+    z-index: 100;
+    text-align: center;
+}
+
+/* الأنيميشن */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-out {
+    animation: fadeOut 1s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* نجوم تلمع عند انتهاء العد */
+.stars-glow {
+    animation: starsGlow 2s ease-in-out;
+}
+
+@keyframes starsGlow {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(2); }
+}
+
+/* للموبايل */
+@media (max-width: 768px) {
+    .moon {
+        width: 80px;
+        height: 80px;
+        top: 20px;
+        right: 20px;
+    }
+    
+    .countdown {
+        gap: 10px;
+    }
+    
+    .countdown-item {
+        padding: 15px 20px;
+        min-width: 80px;
+    }
+    
+    .countdown-item .number {
+        font-size: 32px;
+    }
+    
+    .countdown-item .label {
+        font-size: 14px;
+    }
 }
 </style>
 </head>
-
 <body>
 
-<div class="box">
+<!-- النجوم -->
+<div class="stars" id="stars"></div>
 
-<div id="before">
+<!-- القمر -->
+<div class="moon"></div>
 
-<h1>❤️ فيه مفاجأة مستنياك ❤️</h1>
-
-<p>
-كل ثانية بتقربك من هدية معمولة من كل قلبي...
-</p>
-
-<div id="countdown"></div>
-
+<!-- المحتوى -->
+<div class="container">
+    
+    <!-- شاشة العد التنازلي -->
+    <div class="countdown-screen" id="countdownScreen">
+        <h1>إلى هيما... 🤍</h1>
+        <p>كل ثانية بتقربني من اللحظة اللي مستنيها من زمان...</p>
+        
+        <div class="countdown">
+            <div class="countdown-item">
+                <span class="number" id="days">00</span>
+                <span class="label">يوم</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="hours">00</span>
+                <span class="label">ساعة</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="minutes">00</span>
+                <span class="label">دقيقة</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="seconds">00</span>
+                <span class="label">ثانية</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- شاشة الرسالة -->
+    <div class="message-screen" id="messageScreen">
+        <h1>🎉<br>كل سنة وأنت أجمل هدية من ربنا ليا يا هيما 🤍</h1>
+        <p>الفيديو ده معمول من كل قلبي... أتمنى يخليك تبتسم.</p>
+    </div>
+    
+    <!-- شاشة الفيديو -->
+    <div class="video-screen" id="videoScreen">
+        <video id="birthdayVideo" controls playsinline>
+            <source src="video.mp4" type="video/mp4">
+            متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+        <button class="video-button" id="playButton" onclick="playVideo()">
+            ▶️ تشغيل الفيديو
+        </button>
+    </div>
+    
 </div>
 
-<div id="after" style="display:none;">
-
-<h1>🎉 كل سنة وأنت حبيبي ❤️</h1>
-
-<p>
-أتمنى الفيديو ده يفضل يفكرك قد إيه أنت غالي عندي.
-</p>
-
-<button onclick="window.open('https://drive.google.com/file/d/1oZI7XYPJ1ZP_3_FJDoxz3Y_neZA1fOk6/view','_blank')">
-🎥 افتح الفيديو
-</button>
-
-</div>
-
+<!-- التوقيع -->
+<div class="signature">
+    Made with ❤️ by Rehab
 </div>
 
 <script>
-
-const target=new Date("2026-08-15T00:00:00+03:00").getTime();
-
-setInterval(function(){
-
-const now=new Date().getTime();
-
-const diff=target-now;
-
-if(diff<=0){
-
-document.getElementById("before").style.display="none";
-document.getElementById("after").style.display="block";
-
-}else{
-
-let days=Math.floor(diff/(1000*60*60*24));
-let hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-let minutes=Math.floor((diff%(1000*60*60))/(1000*60));
-let seconds=Math.floor((diff%(1000*60))/1000);
-
-document.getElementById("countdown").innerHTML=
-days+" يوم "
-+hours+" ساعة "
-+minutes+" دقيقة "
-+seconds+" ثانية";
-
+// إنشاء النجوم
+function createStars() {
+    const starsContainer = document.getElementById('stars');
+    const numberOfStars = 150;
+    
+    for (let i = 0; i < numberOfStars; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 3 + 's';
+        star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        starsContainer.appendChild(star);
+    }
 }
 
-},1000);
+// تاريخ الهدف - 15 أغسطس 2026 الساعة 12:00 صباحاً بتوقيت الرياض
+const targetDate = new Date('2026-08-15T00:00:00+03:00').getTime();
 
+// تحديث العد التنازلي
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+    
+    if (distance <= 0) {
+        // انتهى العد التنازلي
+        endCountdown();
+        return;
+    }
+    
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    document.getElementById('days').textContent = days.toString().padStart(2, '0');
+    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+}
+
+// انتهاء العد التنازلي
+function endCountdown() {
+    const countdownScreen = document.getElementById('countdownScreen');
+    const messageScreen = document.getElementById('messageScreen');
+    const videoScreen = document.getElementById('videoScreen');
+    const starsContainer = document.getElementById('stars');
+    
+    // لمعان النجوم
+    starsContainer.classList.add('stars-glow');
+    
+    // إخفاء شاشة العد
+    setTimeout(() => {
+        countdownScreen.classList.add('fade-out');
+        
+        setTimeout(() => {
+            countdownScreen.style.display = 'none';
+            
+            // إظهار الرسالة
+            messageScreen.style.display = 'block';
+            
+            // بعد 4 ثواني، إخفاء الرسالة وإظهار الفيديو
+            setTimeout(() => {
+                messageScreen.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    messageScreen.style.display = 'none';
+                    videoScreen.style.display = 'block';
+                    
+                    // محاولة تشغيل الفيديو تلقائياً
+                    tryAutoPlay();
+                }, 1000);
+            }, 4000);
+        }, 1000);
+    }, 2000);
+}
+
+// محاولة التشغيل التلقائي
+function tryAutoPlay() {
+    const video = document.getElementById('birthdayVideo');
+    const playButton = document.getElementById('playButton');
+    
+    const playPromise = video.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            // تم التشغيل بنجاح
+            console.log('Video started playing');
+        }).catch(error => {
+            // المتصفح منع التشغيل التلقائي، إظهار الزر
+            console.log('Autoplay prevented, showing play button');
+            playButton.style.display = 'block';
+        });
+    }
+}
+
+// تشغيل الفيديو يدوياً
+function playVideo() {
+    const video = document.getElementById('birthdayVideo');
+    const playButton = document.getElementById('playButton');
+    
+    video.play();
+    playButton.style.display = 'none';
+}
+
+// بدء التنفيذ
+window.addEventListener('DOMContentLoaded', () => {
+    createStars();
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+});
 </script>
 
 </body>
