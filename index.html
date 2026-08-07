@@ -43,25 +43,6 @@ body {
     50% { opacity: 1; }
 }
 
-/* القمر */
-.moon {
-    position: fixed;
-    top: 50px;
-    right: 50px;
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle at 30% 30%, #fff9e6, #ffd700);
-    border-radius: 50%;
-    box-shadow: 0 0 60px rgba(255, 215, 0, 0.5), 0 0 100px rgba(255, 215, 0, 0.3);
-    z-index: 1;
-    animation: moonGlow 4s ease-in-out infinite;
-}
-
-@keyframes moonGlow {
-    0%, 100% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.5), 0 0 100px rgba(255, 215, 0, 0.3); }
-    50% { box-shadow: 0 0 80px rgba(255, 215, 0, 0.7), 0 0 120px rgba(255, 215, 0, 0.5); }
-}
-
 /* المحتوى الرئيسي */
 .container {
     position: relative;
@@ -232,13 +213,6 @@ body {
 
 /* للموبايل */
 @media (max-width: 768px) {
-    .moon {
-        width: 80px;
-        height: 80px;
-        top: 20px;
-        right: 20px;
-    }
-    
     .countdown {
         gap: 10px;
     }
@@ -262,9 +236,6 @@ body {
 
 <!-- النجوم -->
 <div class="stars" id="stars"></div>
-
-<!-- القمر -->
-<div class="moon"></div>
 
 <!-- المحتوى -->
 <div class="container">
@@ -315,7 +286,7 @@ body {
 
 <!-- التوقيع -->
 <div class="signature">
-    Made with ❤️ by Rehab
+    Made with love ❤️ by Rehab
 </div>
 
 <script>
