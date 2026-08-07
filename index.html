@@ -152,6 +152,7 @@ body {
     height: auto;
     border-radius: 20px;
     box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    background: #000;
 }
 
 .video-button {
@@ -172,6 +173,13 @@ body {
 .video-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6);
+}
+
+.video-error {
+    display: none;
+    margin-top: 20px;
+    color: #ff6b6b;
+    font-size: 18px;
 }
 
 /* التوقيع */
@@ -273,13 +281,16 @@ body {
     
     <!-- شاشة الفيديو -->
     <div class="video-screen" id="videoScreen">
-        <video id="birthdayVideo" controls playsinline>
+        <video id="birthdayVideo" controls playsinline preload="auto">
             <source src="video.mp4" type="video/mp4">
             متصفحك لا يدعم تشغيل الفيديو.
         </video>
         <button class="video-button" id="playButton" onclick="playVideo()">
             ▶️ تشغيل الفيديو
         </button>
+        <p class="video-error" id="videoError">
+            ⚠️ الفيديو مش بيحمّل... اتأكد إن ملف video.mp4 موجود في الـ Repository
+        </p>
     </div>
     
 </div>
@@ -313,14 +324,21 @@ const isTest = urlParams.get('test') === '1';
 // تاريخ الهدف - 15 أغسطس 2026 الساعة 12:00 صباحاً بتوقيت الرياض
 const targetDate = new Date('2026-08-15T00:00:00+03:00').getTime();
 
+// متغيرات لمنع تكرار مشهد النهاية (إصلاح التعليق)
+let countdownEnded = false;
+let countdownInterval = null;
+
 // تحديث العد التنازلي
 function updateCountdown() {
     const now = new Date().getTime();
     const distance = targetDate - now;
     
     if (distance <= 0 || isTest) {
-        // انتهى العد التنازلي
-        endCountdown();
+        if (!countdownEnded) {
+            countdownEnded = true;
+            clearInterval(countdownInterval);
+            endCountdown();
+        }
         return;
     }
     
@@ -335,7 +353,7 @@ function updateCountdown() {
     document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
 }
 
-// انتهاء العد التنازلي
+// انتهاء العد التنازلي (بيحصل مرة واحدة بس)
 function endCountdown() {
     const countdownScreen = document.getElementById('countdownScreen');
     const messageScreen = document.getElementById('messageScreen');
@@ -380,11 +398,9 @@ function tryAutoPlay() {
     
     if (playPromise !== undefined) {
         playPromise.then(() => {
-            // تم التشغيل بنجاح
-            console.log('Video started playing');
+            playButton.style.display = 'none';
         }).catch(error => {
             // المتصفح منع التشغيل التلقائي، إظهار الزر
-            console.log('Autoplay prevented, showing play button');
             playButton.style.display = 'block';
         });
     }
@@ -395,15 +411,29 @@ function playVideo() {
     const video = document.getElementById('birthdayVideo');
     const playButton = document.getElementById('playButton');
     
-    video.play();
-    playButton.style.display = 'none';
+    video.play().then(() => {
+        playButton.style.display = 'none';
+    }).catch(() => {
+        document.getElementById('videoError').style.display = 'block';
+    });
 }
 
 // بدء التنفيذ
 window.addEventListener('DOMContentLoaded', () => {
     createStars();
+    
+    // مراقبة أخطاء تحميل الفيديو
+    const video = document.getElementById('birthdayVideo');
+    video.addEventListener('error', () => {
+        document.getElementById('videoError').style.display = 'block';
+    }, true);
+    
     updateCountdown();
-    setInterval(updateCountdown, 1000);
+    
+    // نشغّل العداد بس لو العد لسه ماخلصش
+    if (!countdownEnded) {
+        countdownInterval = setInterval(updateCountdown, 1000);
+    }
 });
 </script>
 
