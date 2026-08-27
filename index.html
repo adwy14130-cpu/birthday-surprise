@@ -43,7 +43,7 @@ body {
     50% { opacity: 1; }
 }
 
-/* المحتوى الرئيسي */
+/* المحتوى */
 .container {
     position: relative;
     z-index: 10;
@@ -52,29 +52,16 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding: 20px;
+    padding: 40px 20px 90px;
     text-align: center;
 }
 
-/* شاشة العد التنازلي */
-.countdown-screen {
-    animation: fadeIn 2s ease-in;
-}
-
-.countdown-screen h1 {
-    font-size: clamp(32px, 6vw, 48px);
-    margin-bottom: 20px;
+h1 {
+    font-size: clamp(30px, 6vw, 46px);
     color: #ffd700;
     text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    margin-bottom: 30px;
     animation: pulse 2s ease-in-out infinite;
-}
-
-.countdown-screen p {
-    font-size: clamp(16px, 3vw, 20px);
-    margin-bottom: 40px;
-    color: rgba(255, 255, 255, 0.9);
-    max-width: 600px;
-    line-height: 1.8;
 }
 
 @keyframes pulse {
@@ -82,83 +69,26 @@ body {
     50% { transform: scale(1.05); }
 }
 
-/* العداد */
-.countdown {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 40px;
-}
-
-.countdown-item {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    border-radius: 15px;
-    padding: 25px 30px;
-    min-width: 120px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.countdown-item .number {
-    font-size: clamp(36px, 5vw, 56px);
-    font-weight: bold;
-    color: #ffd700;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-    display: block;
-}
-
-.countdown-item .label {
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.8);
-    margin-top: 5px;
-}
-
-/* شاشة الرسالة بعد العد */
-.message-screen {
-    display: none;
-    animation: fadeIn 2s ease-in;
-    text-align: center;
-    max-width: 700px;
-}
-
-.message-screen h1 {
-    font-size: clamp(28px, 5vw, 42px);
-    color: #ffd700;
-    margin-bottom: 30px;
-    line-height: 1.6;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-}
-
-.message-screen p {
-    font-size: clamp(18px, 3vw, 24px);
+.lead {
+    font-size: clamp(18px, 3.5vw, 24px);
     color: rgba(255, 255, 255, 0.9);
     line-height: 1.8;
-    margin-bottom: 20px;
 }
 
-/* شاشة الفيديو */
-.video-screen {
-    display: none;
-    animation: fadeIn 1s ease-in;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
+/* رقم الأيام */
+.days-number {
+    font-size: clamp(70px, 14vw, 130px);
+    font-weight: bold;
+    color: #ffd700;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+    margin: 10px 0;
+    line-height: 1.1;
 }
 
-.video-screen video {
-    width: 100%;
-    height: auto;
-    border-radius: 20px;
-    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
-    background: #000;
-}
-
-.video-button {
-    display: none;
-    margin: 30px auto;
-    padding: 15px 40px;
+/* الزرار الذهبي */
+.love-button {
+    margin-top: 40px;
+    padding: 16px 45px;
     font-size: 20px;
     background: linear-gradient(135deg, #ffd700, #ffed4e);
     color: #0a0e27;
@@ -168,18 +98,44 @@ body {
     font-weight: bold;
     box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
     transition: all 0.3s ease;
+    font-family: inherit;
 }
 
-.video-button:hover {
+.love-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6);
 }
 
-.video-error {
+.screen {
+    animation: fadeIn 1.5s ease-in;
+}
+
+.hidden {
     display: none;
-    margin-top: 20px;
-    color: #ff6b6b;
-    font-size: 18px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* شاشة الرسالة */
+.message-screen {
+    max-width: 750px;
+}
+
+.message-screen h2 {
+    font-size: clamp(26px, 5vw, 38px);
+    color: #ffd700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    margin-bottom: 25px;
+}
+
+.message-screen p {
+    font-size: clamp(17px, 3vw, 21px);
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 2.1;
+    margin-bottom: 22px;
 }
 
 /* التوقيع */
@@ -194,48 +150,9 @@ body {
     text-align: center;
 }
 
-/* الأنيميشن */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.fade-out {
-    animation: fadeOut 1s ease-out forwards;
-}
-
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
-
-/* نجوم تلمع عند انتهاء العد */
-.stars-glow {
-    animation: starsGlow 2s ease-in-out;
-}
-
-@keyframes starsGlow {
-    0%, 100% { filter: brightness(1); }
-    50% { filter: brightness(2); }
-}
-
-/* للموبايل */
 @media (max-width: 768px) {
-    .countdown {
-        gap: 10px;
-    }
-    
-    .countdown-item {
-        padding: 15px 20px;
-        min-width: 80px;
-    }
-    
-    .countdown-item .number {
-        font-size: 32px;
-    }
-    
-    .countdown-item .label {
-        font-size: 14px;
+    .container {
+        padding: 30px 15px 90px;
     }
 }
 </style>
@@ -245,54 +162,28 @@ body {
 <!-- النجوم -->
 <div class="stars" id="stars"></div>
 
-<!-- المحتوى -->
 <div class="container">
-    
-    <!-- شاشة العد التنازلي -->
-    <div class="countdown-screen" id="countdownScreen">
+
+    <!-- شاشة العداد -->
+    <div class="screen" id="counterScreen">
         <h1>إلى هيما... 🤍</h1>
-        <p>كل ثانية بتقربني من اللحظة اللي مستنيها من زمان...</p>
-        
-        <div class="countdown">
-            <div class="countdown-item">
-                <span class="number" id="days">00</span>
-                <span class="label">يوم</span>
-            </div>
-            <div class="countdown-item">
-                <span class="number" id="hours">00</span>
-                <span class="label">ساعة</span>
-            </div>
-            <div class="countdown-item">
-                <span class="number" id="minutes">00</span>
-                <span class="label">دقيقة</span>
-            </div>
-            <div class="countdown-item">
-                <span class="number" id="seconds">00</span>
-                <span class="label">ثانية</span>
-            </div>
-        </div>
+        <p class="lead">عدّى علينا</p>
+        <div class="days-number" id="daysNumber">0</div>
+        <p class="lead">يوم من أجمل لحظة في حياتي ❤️</p>
+        <button class="love-button" onclick="showMessage()">💌 اضغط هنا يا حبيبي</button>
     </div>
-    
+
     <!-- شاشة الرسالة -->
-    <div class="message-screen" id="messageScreen">
-        <h1>🎉<br>كل سنة وأنت أجمل هدية من ربنا ليا يا هيما 🤍</h1>
-        <p>الفيديو ده معمول من كل قلبي... أتمنى يخليك تبتسم.</p>
+    <div class="screen message-screen hidden" id="messageScreen">
+        <h2>حبيبي ❤️</h2>
+        <p>بس حابة أقولك إنك بقيت جزء كبير أوي من حياتي، ومبقتش متخيلة أيامي من غيرك 🥹❤️</p>
+        <p>بحبك وبحب كل تفاصيلك، كلامك وهزارك واهتمامك، وحتى رخامتك اللي بحب أرخم عليك بسببها 😂❤️</p>
+        <p>وحشتني أوي، ووحشني وجودك جنبي… ونفسي أفضل دايمًا الشخص اللي ترتاح معاه وتحس إنك في بيتك ❤️</p>
+        <p>ربنا يخليك ليا يا حبيبي، ويجمعنا دايمًا على خير، وأفضل أدلعك وأحبك وأرخم عليك، وأصدقك وأؤمن بيك وبقراراتك ورأيك، وأفضل دايمًا واثقة فيك وفي كل خطوة بتاخدها… العمر كله 😂❤️</p>
+        <h2>بحبك يا هيمتي 🥹❤️</h2>
+        <button class="love-button" onclick="goBack()">🌙 ارجع للعداد</button>
     </div>
-    
-    <!-- شاشة الفيديو -->
-    <div class="video-screen" id="videoScreen">
-        <video id="birthdayVideo" controls playsinline preload="auto">
-            <source src="video.mp4" type="video/mp4">
-            متصفحك لا يدعم تشغيل الفيديو.
-        </video>
-        <button class="video-button" id="playButton" onclick="playVideo()">
-            ▶️ تشغيل الفيديو
-        </button>
-        <p class="video-error" id="videoError">
-            ⚠️ الفيديو مش بيحمّل... اتأكد إن ملف video.mp4 موجود في الـ Repository
-        </p>
-    </div>
-    
+
 </div>
 
 <!-- التوقيع -->
@@ -303,137 +194,44 @@ body {
 <script>
 // إنشاء النجوم
 function createStars() {
-    const starsContainer = document.getElementById('stars');
-    const numberOfStars = 150;
-    
-    for (let i = 0; i < numberOfStars; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.animationDelay = Math.random() * 3 + 's';
-        star.style.animationDuration = (Math.random() * 2 + 2) + 's';
-        starsContainer.appendChild(star);
+    const c = document.getElementById('stars');
+    for (let i = 0; i < 150; i++) {
+        const s = document.createElement('div');
+        s.className = 'star';
+        s.style.left = Math.random() * 100 + '%';
+        s.style.top = Math.random() * 100 + '%';
+        s.style.animationDelay = Math.random() * 3 + 's';
+        s.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        c.appendChild(s);
     }
 }
 
-// وضع الاختبار السري
-const urlParams = new URLSearchParams(window.location.search);
-const isTest = urlParams.get('test') === '1';
+// ⭐⭐⭐ غيّري التاريخ ده لتاريخ "أجمل لحظة" الحقيقية بينكم ⭐⭐⭐
+const startDate = new Date('2025-04-25T00:00:00');
 
-// تاريخ الهدف - 15 أغسطس 2026 الساعة 12:00 صباحاً بتوقيت الرياض
-const targetDate = new Date('2026-08-15T00:00:00+03:00').getTime();
-
-// متغيرات لمنع تكرار مشهد النهاية (إصلاح التعليق)
-let countdownEnded = false;
-let countdownInterval = null;
-
-// تحديث العد التنازلي
-function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-    
-    if (distance <= 0 || isTest) {
-        if (!countdownEnded) {
-            countdownEnded = true;
-            clearInterval(countdownInterval);
-            endCountdown();
-        }
-        return;
-    }
-    
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-    document.getElementById('days').textContent = days.toString().padStart(2, '0');
-    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+// حساب عدد الأيام (بيزيد لوحده كل يوم)
+function calcDays() {
+    const now = new Date();
+    return Math.max(0, Math.floor((now - startDate) / (1000 * 60 * 60 * 24)));
 }
 
-// انتهاء العد التنازلي (بيحصل مرة واحدة بس)
-function endCountdown() {
-    const countdownScreen = document.getElementById('countdownScreen');
-    const messageScreen = document.getElementById('messageScreen');
-    const videoScreen = document.getElementById('videoScreen');
-    const starsContainer = document.getElementById('stars');
-    
-    // لمعان النجوم
-    starsContainer.classList.add('stars-glow');
-    
-    // إخفاء شاشة العد
-    setTimeout(() => {
-        countdownScreen.classList.add('fade-out');
-        
-        setTimeout(() => {
-            countdownScreen.style.display = 'none';
-            
-            // إظهار الرسالة
-            messageScreen.style.display = 'block';
-            
-            // بعد 4 ثواني، إخفاء الرسالة وإظهار الفيديو
-            setTimeout(() => {
-                messageScreen.classList.add('fade-out');
-                
-                setTimeout(() => {
-                    messageScreen.style.display = 'none';
-                    videoScreen.style.display = 'block';
-                    
-                    // محاولة تشغيل الفيديو تلقائياً
-                    tryAutoPlay();
-                }, 1000);
-            }, 4000);
-        }, 1000);
-    }, 2000);
+// إظهار الرسالة
+function showMessage() {
+    document.getElementById('counterScreen').classList.add('hidden');
+    document.getElementById('messageScreen').classList.remove('hidden');
+    window.scrollTo(0, 0);
 }
 
-// محاولة التشغيل التلقائي
-function tryAutoPlay() {
-    const video = document.getElementById('birthdayVideo');
-    const playButton = document.getElementById('playButton');
-    
-    const playPromise = video.play();
-    
-    if (playPromise !== undefined) {
-        playPromise.then(() => {
-            playButton.style.display = 'none';
-        }).catch(error => {
-            // المتصفح منع التشغيل التلقائي، إظهار الزر
-            playButton.style.display = 'block';
-        });
-    }
+// الرجوع للعداد
+function goBack() {
+    document.getElementById('messageScreen').classList.add('hidden');
+    document.getElementById('counterScreen').classList.remove('hidden');
+    window.scrollTo(0, 0);
 }
 
-// تشغيل الفيديو يدوياً
-function playVideo() {
-    const video = document.getElementById('birthdayVideo');
-    const playButton = document.getElementById('playButton');
-    
-    video.play().then(() => {
-        playButton.style.display = 'none';
-    }).catch(() => {
-        document.getElementById('videoError').style.display = 'block';
-    });
-}
-
-// بدء التنفيذ
 window.addEventListener('DOMContentLoaded', () => {
     createStars();
-    
-    // مراقبة أخطاء تحميل الفيديو
-    const video = document.getElementById('birthdayVideo');
-    video.addEventListener('error', () => {
-        document.getElementById('videoError').style.display = 'block';
-    }, true);
-    
-    updateCountdown();
-    
-    // نشغّل العداد بس لو العد لسه ماخلصش
-    if (!countdownEnded) {
-        countdownInterval = setInterval(updateCountdown, 1000);
-    }
+    document.getElementById('daysNumber').textContent = calcDays();
 });
 </script>
 
