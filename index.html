@@ -106,7 +106,7 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* الخطاب */
+/* صندوق الرسالة - بنفس ستايل الصفحة */
 .letter-wrap {
     display: flex;
     flex-direction: column;
@@ -115,13 +115,15 @@ body {
 }
 
 .letter {
-    background: #fff8f0;
-    color: #4a2430;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 215, 0, 0.35);
     border-radius: 20px;
     padding: clamp(30px, 5vw, 50px);
     max-width: 700px;
     width: 100%;
-    box-shadow: inset 0 0 0 4px rgba(212, 175, 55, 0.25), 0 20px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
     position: relative;
     text-align: right;
     margin-top: 30px;
@@ -145,7 +147,8 @@ body {
 
 .letter h2 {
     font-family: 'Aref Ruqaa', serif;
-    color: #a4243b;
+    color: #ffd700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
     font-size: clamp(24px, 5vw, 34px);
     margin-bottom: 20px;
 }
@@ -154,12 +157,14 @@ body {
     font-size: clamp(16px, 3vw, 19px);
     line-height: 2.2;
     margin-bottom: 18px;
+    color: rgba(255, 255, 255, 0.92);
 }
 
 .letter .closing {
     font-family: 'Aref Ruqaa', serif;
     font-size: clamp(20px, 4vw, 26px);
-    color: #a4243b;
+    color: #ffd700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
     margin-top: 25px;
     margin-bottom: 0;
 }
@@ -198,7 +203,7 @@ body {
         <button class="love-button" onclick="showMessage()">💌 اضغط هنا يا حبيبي</button>
     </div>
 
-    <!-- شاشة الخطاب -->
+    <!-- شاشة الرسالة -->
     <div class="screen letter-wrap hidden" id="messageScreen">
         <div class="letter">
             <div class="seal">❤️</div>
@@ -247,7 +252,7 @@ function calcDays() {
     return baseDays + Math.floor((now - anchorDate) / (1000 * 60 * 60 * 24));
 }
 
-// إظهار الخطاب
+// إظهار الرسالة
 function showMessage() {
     document.getElementById('counterScreen').classList.add('hidden');
     document.getElementById('messageScreen').classList.remove('hidden');
