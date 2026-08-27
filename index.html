@@ -20,7 +20,6 @@ body {
     color: white;
 }
 
-/* القلوب الطايرة */
 .hearts {
     position: fixed;
     top: 0;
@@ -42,7 +41,6 @@ body {
     to { transform: translateY(-115vh); }
 }
 
-/* المحتوى */
 .container {
     position: relative;
     z-index: 10;
@@ -61,7 +59,6 @@ body {
     line-height: 1.8;
 }
 
-/* رقم الأيام */
 .days-number {
     font-family: 'Aref Ruqaa', serif;
     font-size: clamp(80px, 16vw, 150px);
@@ -72,8 +69,8 @@ body {
     line-height: 1.2;
 }
 
-/* الزرار الذهبي */
 .love-button {
+    display: inline-block;
     margin-top: 40px;
     padding: 16px 45px;
     font-size: 20px;
@@ -86,6 +83,7 @@ body {
     box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
     transition: all 0.3s ease;
     font-family: 'Cairo', sans-serif;
+    text-decoration: none;
 }
 
 .love-button:hover {
@@ -93,83 +91,6 @@ body {
     box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6);
 }
 
-.screen {
-    animation: fadeIn 1.5s ease-in;
-}
-
-.hidden {
-    display: none;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* صندوق الرسالة - بنفس ستايل الصفحة */
-.letter-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
-.letter {
-    background: rgba(255, 255, 255, 0.07);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 215, 0, 0.35);
-    border-radius: 20px;
-    padding: clamp(30px, 5vw, 50px);
-    max-width: 700px;
-    width: 100%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-    position: relative;
-    text-align: right;
-    margin-top: 30px;
-}
-
-.seal {
-    position: absolute;
-    top: -28px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 56px;
-    height: 56px;
-    background: linear-gradient(135deg, #ffd700, #e6b800);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 26px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-}
-
-.letter h2 {
-    font-family: 'Aref Ruqaa', serif;
-    color: #ffd700;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-    font-size: clamp(24px, 5vw, 34px);
-    margin-bottom: 20px;
-}
-
-.letter p {
-    font-size: clamp(16px, 3vw, 19px);
-    line-height: 2.2;
-    margin-bottom: 18px;
-    color: rgba(255, 255, 255, 0.92);
-}
-
-.letter .closing {
-    font-family: 'Aref Ruqaa', serif;
-    font-size: clamp(20px, 4vw, 26px);
-    color: #ffd700;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-    margin-top: 25px;
-    margin-bottom: 0;
-}
-
-/* التوقيع */
 .signature {
     position: fixed;
     bottom: 20px;
@@ -190,45 +111,23 @@ body {
 </head>
 <body>
 
-<!-- القلوب الطايرة -->
 <div class="hearts" id="hearts"></div>
 
 <div class="container">
-
-    <!-- شاشة العداد -->
-    <div class="screen" id="counterScreen">
-        <p class="lead">عدّى علينا</p>
-        <div class="days-number" id="daysNumber">49</div>
-        <p class="lead">يوم من أجمل لحظة في حياتي ❤️</p>
-        <button class="love-button" onclick="showMessage()">💌 اضغط هنا يا حبيبي</button>
-    </div>
-
-    <!-- شاشة الرسالة -->
-    <div class="screen letter-wrap hidden" id="messageScreen">
-        <div class="letter">
-            <div class="seal">❤️</div>
-            <h2>حبيبي ❤️</h2>
-            <p>بس حابة أقولك إنك بقيت جزء كبير أوي من حياتي، ومبقتش متخيلة أيامي من غيرك 🥹❤️</p>
-            <p>بحبك وبحب كل تفاصيلك، كلامك وهزارك واهتمامك، وحتى رخامتك اللي بحب أرخم عليك بسببها 😂❤️</p>
-            <p>وحشتني أوي، ووحشني وجودك جنبي… ونفسي أفضل دايمًا الشخص اللي ترتاح معاه وتحس إنك في بيتك ❤️</p>
-            <p>ربنا يخليك ليا يا حبيبي، ويجمعنا دايمًا على خير، وأفضل أدلعك وأحبك وأرخم عليك، وأصدقك وأؤمن بيك وبقراراتك ورأيك، وأفضل دايمًا واثقة فيك وفي كل خطوة بتاخدها… العمر كله 😂❤️</p>
-            <p class="closing">بحبك يا هيمتي 🥹❤️</p>
-        </div>
-        <button class="love-button" onclick="goBack()">🌙 ارجع للعداد</button>
-    </div>
-
+    <p class="lead">عدّى </p>
+    <div class="days-number" id="daysNumber">49</div>
+    <p class="lead">يوم من أجمل لحظة في حياتي ❤️</p>
+    <a class="love-button" href="message.html">💌 رساله مستخبيه ليك</a>
 </div>
 
-<!-- التوقيع -->
 <div class="signature">
-    Made with ❤️ by Rehab
+    Made with love❤️ by Rehab
 </div>
 
 <script>
-// إنشاء القلوب الطايرة
 function createHearts() {
     const wrap = document.getElementById('hearts');
-    const emojis = ['❤️', '🤍', '💛'];
+    const emojis = ['❤️', '🤍', ''];
     
     for (let i = 0; i < 25; i++) {
         const h = document.createElement('span');
@@ -243,27 +142,12 @@ function createHearts() {
     }
 }
 
-// الرقم بيبدأ بـ 49 يوم 27 أغسطس 2026 وبيزيد يوم كل يوم لوحده
 const baseDays = 49;
 const anchorDate = new Date('2026-08-27T00:00:00');
 
 function calcDays() {
     const now = new Date();
     return baseDays + Math.floor((now - anchorDate) / (1000 * 60 * 60 * 24));
-}
-
-// إظهار الرسالة
-function showMessage() {
-    document.getElementById('counterScreen').classList.add('hidden');
-    document.getElementById('messageScreen').classList.remove('hidden');
-    window.scrollTo(0, 0);
-}
-
-// الرجوع للعداد
-function goBack() {
-    document.getElementById('messageScreen').classList.add('hidden');
-    document.getElementById('counterScreen').classList.remove('hidden');
-    window.scrollTo(0, 0);
 }
 
 window.addEventListener('DOMContentLoaded', () => {
